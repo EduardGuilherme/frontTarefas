@@ -1,4 +1,13 @@
 <h2>Usuários</h2>
+<form [formGroup]="usuarioForm" (ngSubmit)="submitUsuario()">
+  <input formControlName="name" placeholder="Nome" />
+  <input formControlName="email" placeholder="Email" type="email" />
+  <input formControlName="senha" placeholder="Senha" type="password" />
+  <button type="submit">Adicionar Usuário</button>
+</form>
+
+<hr>
+
 <ul>
   <li *ngFor="let u of usuarios">
     {{ u.id }} - {{ u.name }} ({{ u.email }})
