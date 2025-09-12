@@ -1,6 +1,32 @@
-<h2>Tarefas</h2>
+<h2>{{ editingTarefaId ? 'Editar Tarefa' : 'Criar Tarefa' }}</h2>
+
+<form [formGroup]="tarefaForm" (ngSubmit)="submitTarefa()">
+  <input formControlName="name" placeholder="Nome da tarefa" />
+  <input formControlName="description" placeholder="Descrição" />
+  
+  <select formControlName="status">
+    <option *ngFor="let s of [1,2,3]" [ngValue]="s">{{ statusMap[s] }}</option>
+  </select>
+
+  <select formControlName="usuarioId">
+    <option [ngValue]="null">Sem usuário</option>
+    <option *ngFor="let u of usuarios" [ngValue]="u.id">{{ u.name }}</option>
+  </select>
+
+  <button type="submit">{{ editingTarefaId ? 'Salvar Alterações' : 'Adicionar Tarefa' }}</button>
+  <button type="button" *ngIf="editingTarefaId" (click)="cancelEdit()">Cancelar</button>
+</form>
+
+<hr>
+
 <ul>
   <li *ngFor="let t of tarefas">
-    {{ t.id }} - {{ t.name }} (Status: {{ t.status }})
+     <strong>{{ t.name }}</strong> - {{ t.description }} <br>
+    Status: {{ statusMap[t.status] }} <br>
+    Criado em: {{ t.createdAt | date:'short' }} <br>
+    Usuário: {{ t.usuario?.name }} ({{ t.usuario?.email }}) <br>
+    <button (click)="editTarefa(t)">Editar</button>
+    <button (click)="deleteTarefa(t.id)">Excluir</button>
+    <hr>
   </li>
 </ul>
