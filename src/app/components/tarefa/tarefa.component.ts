@@ -14,6 +14,9 @@ export class TarefaComponent implements OnInit {
   tarefaForm: FormGroup;
   editingTarefaId: number | null = null;
 
+  filtroStatus: number | null = null;
+  filtroUsuario: number | null = null;
+
   statusMap: { [key: number]: string } = {
   1: 'A fazer',
   2: 'Em Andamento',
@@ -45,6 +48,23 @@ export class TarefaComponent implements OnInit {
   loadUsuarios(): void {
     this.usuarioService.getUsuarios().subscribe(data => this.usuarios = data);
   }
+
+   buscarPorStatus(): void {
+    if (this.filtroStatus) {
+      this.tarefaService.getTarefasByStatus(this.filtroStatus).subscribe(data => this.tarefas = data);
+    } else {
+      this.loadTarefas();
+    }
+  }
+
+  buscarPorUsuario(): void {
+    if (this.filtroUsuario) {
+      this.tarefaService.getTarefasByUsuario(this.filtroUsuario).subscribe(data => this.tarefas = data);
+    } else {
+      this.loadTarefas();
+    }
+  }
+
 
   submitTarefa(): void {
   if (this.tarefaForm.valid) {
