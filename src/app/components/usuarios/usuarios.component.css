@@ -1,0 +1,46 @@
+.usuarios-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.usuario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.usuario-form input {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.usuario-form button {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.usuario-form button:hover {
+  background-color: #115293;
+}
+
+.usuarios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.usuario-card {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
